@@ -1,0 +1,494 @@
+/*/////////////////////*/
+/* index */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header {
+    position: fixed;
+    background-color: #4CAF50;
+    color: back;
+    padding: 10px 0;
+    text-align: center;
+}
+
+.menu-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #4CAF50;
+    color: black;
+    z-index: 1000; /* Ensure menu is above other content */
+}
+
+.menu {
+    list-style-type: none;
+    display: flex;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: black;
+}
+
+.menu-item {
+    position: relative;
+    padding: 10px 15px;
+}
+
+.menu-item a {
+    color: black;
+    text-decoration: none;
+}
+
+.menu-item:hover {
+    background-color: white;
+}
+
+.submenu {
+    display: none;
+    list-style-type: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color:#4CAF50;
+    width: 200px;
+}
+
+.menu-item:hover .submenu {
+    display: block;
+}
+
+.submenu li {
+    padding: 10px;
+    text-align: left;
+}
+
+.submenu li a {
+    color: black;
+    text-decoration: none;
+}
+
+.submenu li a:hover {
+    background-color: white;
+}
+
+.sub {
+    list-style-type:disc;
+    position:relative;
+    top: 100%;
+    left: 10;
+    background-color:#4CAF50;
+    width: 150px;
+}
+
+.sub li {
+    padding: 5px;
+    text-align: left;
+}
+
+.sub li a {
+    color: black;
+    text-decoration: none;
+}
+
+.sub li a:hover {
+    background-color: white;
+}
+
+/* Separator line */
+hr {
+    margin: 10px 0;
+    border: 0;
+    border-top: 1px solid #ccc;
+}
+
+.content {
+    padding-top: 10px; /* Space for fixed menu */
+    padding: 70px 10px;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+/* Ensure the content fills the full height */
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+
+/*/////////////////////*/
+/*stock manaagement*/
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+}
+
+h1 {
+    /*padding: 70px 70px;*/
+    margin-top: 70px;
+    text-align: center;
+    color: #333;
+}
+
+h4 {
+    text-align: left;
+    color: blue;
+}   
+
+legend {
+    color: blue;
+}
+
+.container {
+    width: 100%;
+    margin: 30px auto;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+input {
+    width: 25%;
+    padding: 8px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+
+
+button:hover {
+    background-color: #218838;
+}
+
+.container_1 {
+    width: 100%;
+    margin: 30px auto;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.container_1 input {
+    width: 20%;
+}
+
+
+
+#submitButton{
+    background-color: yellow;
+    color: red;
+    border: none;
+    cursor: pointer;
+}
+#submitButton:hover{
+    background-color: rgba(138, 184, 10, 0.64);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ccc;
+}
+
+th {
+    background-color: #f8f9fa;
+}
+
+.delete-btn, .update-btn {
+    padding: 5px 10px;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.delete-btn {
+    background-color: #dc3545;
+}
+
+.update-btn {
+    background-color: #007bff;
+}
+
+
+.delete-btn:hover {
+    background-color: #c82333;
+}
+
+.update-btn:hover {
+    background-color: #0056b3;
+}
+
+
+/*alert*/
+.error {
+    background-color: red;
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+    text-align: center;
+    margin-top: 60px;
+}
+
+.success {
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+    text-align: center;
+    margin-top: 60px;
+}
+
+/*about*/
+.about-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 20px;
+    padding: 20px;
+}
+
+section {
+    width:80%;
+    padding: 20px;
+    margin-left:auto;
+    margin-right: auto;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/*register*/
+.register {
+    background-color: white;
+    padding: 50px;
+    border-radius: 8px;
+    width: 35%;
+    margin: 40px auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+form {
+    display: block;
+    text-align: left;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.register input {
+    width: 100%;
+    padding: 8px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.register button {
+    display: flex;
+    flex-direction: column; /* Stacks children vertically */
+    width: 100%;
+    padding: 10px 20px;
+    background-color: rgba(6, 131, 83, 0.467);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+
+/*login*/
+
+div.login {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    /*align-items: center;*/
+    height: 60vh; /* Adjust for space */
+}
+
+div.dialog {
+    background-color: white;
+    padding: 70px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    text-align: center;
+    border-radius: 8px;
+}
+
+div.dialog h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+div.input-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+div.input-group label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+div.input-group input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+div.input-group button {
+    width: 100%;
+    padding: 10px;
+    background-color: rgba(6, 131, 83, 0.467);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+div.input-group button:hover {
+    background-color:  #218838;
+}
+
+/*dropdown*/
+
+/* Search input */
+.dropdown-input {
+    width: 25%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    background-color: #f9f9f9;
+    color: #333;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dropdown-input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
+    outline: none;
+}
+
+/* Dropdown list */
+.dropdown-list {
+    top: 100%;
+    left: 0;
+    width: 25%;
+    max-height: 200px;
+    overflow-y: auto;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    display: none;
+    transition: all 0.3s ease;
+}
+
+/* Style for each option */
+.dropdown-list div {
+    padding: 12px;
+    cursor: pointer;
+    font-size: 16px;
+    color: #333;
+    transition: background-color 0.2s ease;
+}
+
+/* Hover effect for options */
+.dropdown-list div:hover {
+    background-color: #f0f0f0;
+}
+
+
+/*search2*/
+/* Search input */
+.dropdown-input1 {
+    width: 25%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    background-color: #f9f9f9;
+    color: #333;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dropdown-input1:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
+    outline: none;
+}
+
+/* Dropdown list */
+.dropdown-list1 {
+    top: 100%;
+    left: 0;
+    width: 25%;
+    max-height: 200px;
+    overflow-y: auto;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    display: none;
+    transition: all 0.3s ease;
+}
+
+/* Style for each option */
+.dropdown-list1 div {
+    padding: 12px;
+    cursor: pointer;
+    font-size: 16px;
+    color: #333;
+    transition: background-color 0.2s ease;
+}
+
+/* Hover effect for options */
+.dropdown-list1 div:hover {
+    background-color: #f0f0f0;
+}
+
+
+/*all footer*/
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: auto;
+    width: 100%;
+    bottom: 0;
+    }
