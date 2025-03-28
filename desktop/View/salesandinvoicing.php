@@ -2,7 +2,6 @@
 session_start(); 
 include '../model/config.php'; // Include the database connection
 
-echo "i changed this again";
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // insert
