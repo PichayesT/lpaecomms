@@ -525,3 +525,111 @@ footer {
     font-size: 24px;
     margin-left: 10px;
 }
+
+
+/* User Guide Page */
+.usersguide-container {
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+}
+
+.usersguide-container h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.usersguide-container h2 {
+    color: #4CAF50;
+    margin-top: 30px;
+    border-bottom: 2px solid #4CAF50;
+    padding-bottom: 5px;
+}
+
+.usersguide-container p {
+    color: #555;
+    margin: 10px 0;
+}
+
+.usersguide-container ul.toc {
+    list-style-type: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+.usersguide-container ul.toc li {
+    margin: 10px 0;
+}
+
+.usersguide-container ul.toc li a {
+    text-decoration: none;
+    color: #4CAF50;
+    font-weight: bold;
+}
+
+.usersguide-container ul.toc li a:hover {
+    text-decoration: underline;
+}
+
+.usersguide-container a {
+    color: #4CAF50;
+    text-decoration: none;
+}
+
+.usersguide-container a:hover {
+    text-decoration: underline;
+}
+
+
+/* Welcome Page */
+.welcome-container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+}
+
+.welcome-container h1 {
+    color: #4CAF50;
+    margin-bottom: 20px;
+}
+
+.welcome-container p {
+    color: #555;
+    margin-bottom: 30px;
+}
+
+.quick-links h2 {
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.quick-links ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.quick-links ul li {
+    margin: 10px 0;
+}
+
+.quick-links ul li a {
+    text-decoration: none;
+    color: #4CAF50;
+    font-weight: bold;
+}
+
+.quick-links ul li a:hover {
+    text-decoration: underline;
+}
