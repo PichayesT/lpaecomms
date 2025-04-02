@@ -331,6 +331,7 @@ div.login {
     display: flex;
     justify-content: center;
     margin-top: 50px;
+    margin-bottom: auto;
     /*align-items: center;*/
     height: 60vh; /* Adjust for space */
 }

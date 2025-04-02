@@ -140,3 +140,7 @@
     </div>
 </body>
 </html>
+
+<?php
+    require '../view/footer.php';
+?>

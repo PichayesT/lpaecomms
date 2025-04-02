@@ -42,10 +42,6 @@
     </div>
 </main>
 
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2024 Logic Peripherals Australia.</p>
-    </footer>
 </body>
 </html>
 
