@@ -116,7 +116,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <div class="container">
     <h4>Add New Product</h4>
     <form id="addProductForm">
-        <!--<label for="productName">Name:</label>-->
+
+        <!--<label for="productName">Name:</label>-->  <!          
         <input type="text" id="productName" name="productName" placeholder="Product Name" required>
 
         <!--<label for="productPicture">URL:</label>-->
@@ -161,7 +162,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <form id="UpdateProductForm">
         <input type="text" id="search-input" name="productName" placeholder="Product Name or description..." required>
 
-        <button type="button" onclick="filterProducts()">Find Product</button>
+        <button type="button" onclick="filterProducts()">Search...</button>
     </form>
 
     <table id="stockTable_1">
