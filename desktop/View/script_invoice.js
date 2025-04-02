@@ -411,11 +411,16 @@ function filterInvoices() {
     const invoices = document.querySelectorAll('.invoice');
 
     invoices.forEach(invoice => {
-        const invoiceName = invoice.querySelector('.invoice-name').textContent.toLowerCase();
-        if (invoiceName.includes(searchInput)) {
-            invoice.style.display = ('table-row');
+        const invoiceName = invoice.querySelector('.invoice-name')?.textContent.toLowerCase() || '';
+        const invoiceID = invoice.dataset.id.toLowerCase(); // Access the data-id attribute
+        const invoiceDate = invoice.querySelector('.invoice-date')?.textContent.toLowerCase() || '';
+        const invoiceClientID = invoice.querySelector('.invoice-clientID')?.textContent.toLowerCase() || '';
+
+        // Check if the search input matches any of the columns
+        if (invoiceName.includes(searchInput) || invoiceID.includes(searchInput) || invoiceDate.includes(searchInput) || invoiceClientID.includes(searchInput)) {
+            invoice.style.display = 'table-row'; // Show the row if there's a match
         } else {
-            invoice.style.display = 'none';
+            invoice.style.display = 'none'; // Hide the row if there's no match
         }
     });
 }
@@ -453,4 +458,18 @@ function deleteProductInUI(button) {
     };
 
     xhr.send(`id=${id}`);  // Send ID to PHP for deletion
+}
+
+function openInvoiceDetails(invoiceId) {
+    const width = 600;
+    const height = 400;
+    const left = (screen.width - width) / 2;
+    const top = (screen.height - height) / 2;
+
+    // Open a new popup window
+    window.open(
+        `invoice_details.php?id=${invoiceId}`,
+        'InvoiceDetails',
+        `width=${width},height=${height},top=${top},left=${left},resizable=yes,scrollbars=yes`
+    );
 }
