@@ -140,7 +140,11 @@ function filterUsers() {
 
     users.forEach(user => {
         const userfirstName = user.querySelector('.user-firstName').textContent.toLowerCase();  // Get the product name
-        if (userfirstName.includes(searchInput)) {  // If the product name contains the search input
+        const userlastName = user.querySelector('.user-lastName').textContent.toLowerCase();
+        const userAddress = user.querySelector('.user-address').textContent.toLowerCase();
+        const userPhone = user.querySelector('.user-phone').textContent.trim();
+        const useruserName = user.querySelector('.user-userName').textContent.toLowerCase();
+        if (userfirstName.includes(searchInput) || userlastName.includes(searchInput) || userAddress.includes(searchInput) || userPhone.includes(searchInput) || useruserName.includes(searchInput)) {  // If the product name contains the search input
             user.style.display = 'table-row';  // Show the product row
         } else {
             user.style.display = 'none';  // Hide the product row

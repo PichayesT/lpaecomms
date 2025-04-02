@@ -324,7 +324,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <div class="container_1">
     <h4>Update Client Information</h4>
     <form id="UpdateUserForm">
-        <input type="text" id="search-input" name="firstName" placeholder="First Name" required>
+        <input type="text" id="search-input" name="firstName" placeholder="Client details..." required>
         <button type="button" onclick="filterUsers()">Find User</button>
     </form>
 
