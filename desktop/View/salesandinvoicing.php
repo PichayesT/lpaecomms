@@ -227,7 +227,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <div class="container_1">
     <h4>Fix The Product</h4>
     <form id="UpdateProductForm">
-        <input type="text" id="search-input" name="invoiceName" placeholder="Invoice details" required>
+        <input type="text" id="search-input" name="invoiceName" placeholder="Invoice number, name, client ID..." required>
         <button type="button" onclick="filterInvoices()">Find Invoices</button>
     </form>
 
@@ -262,7 +262,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             foreach ($stock_items as $index => $item) {
                 echo "<tr class='invoice' data-id='" . $item["lpa_inv_no"] . "'>";  // Added class 'product' to each row
                 echo "<td>" . number_format($item["lpa_inv_no"]) . "</td>";
-                echo "<td class='invpice-date'>" . date("F j, Y", strtotime($item["lpa_inv_date"])) . "</td>";  // Added missing semicolon here
+                echo "<td class='invpice-date'>" . date("F j, Y g:i A", strtotime($item["lpa_inv_date"])) . "</td>";  // Added missing semicolon here
                 echo "<td class='invoice-clientID'>" . number_format($item["lpa_inv_client_ID"]) . "</td>";
                 echo "<td class='invoice-name'>" . htmlspecialchars($item["lpa_inv_client_name"]) . "</td>";
                 echo "<td class='invoice-address'>" . htmlspecialchars($item["lpa_inv_client_address"]) . "</td>";

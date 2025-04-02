@@ -133,7 +133,8 @@ function filterProducts() {
 
     products.forEach(product => {
         const productName = product.querySelector('.product-name').textContent.toLowerCase();  // Get the product name
-        if (productName.includes(searchInput)) {  // If the product name contains the search input
+        const productDes = product.querySelector('.product-desc').textContent.toLowerCase();
+        if (productName.includes(searchInput) || productDes.includes(searchInput) )  {  // If the product name contains the search input
             product.style.display = 'table-row';  // Show the product row
         } else {
             product.style.display = 'none';  // Hide the product row

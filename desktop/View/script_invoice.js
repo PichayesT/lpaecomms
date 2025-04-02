@@ -413,11 +413,10 @@ function filterInvoices() {
     invoices.forEach(invoice => {
         const invoiceName = invoice.querySelector('.invoice-name')?.textContent.toLowerCase() || '';
         const invoiceID = invoice.dataset.id.toLowerCase(); // Access the data-id attribute
-        const invoiceDate = invoice.querySelector('.invoice-date')?.textContent.toLowerCase() || '';
         const invoiceClientID = invoice.querySelector('.invoice-clientID')?.textContent.toLowerCase() || '';
 
         // Check if the search input matches any of the columns
-        if (invoiceName.includes(searchInput) || invoiceID.includes(searchInput) || invoiceDate.includes(searchInput) || invoiceClientID.includes(searchInput)) {
+        if (invoiceName.includes(searchInput) || invoiceID.includes(searchInput) || invoiceClientID.includes(searchInput)) {
             invoice.style.display = 'table-row'; // Show the row if there's a match
         } else {
             invoice.style.display = 'none'; // Hide the row if there's no match

@@ -159,8 +159,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <div class="container_1">
     <h4>Fix The Product</h4>
     <form id="UpdateProductForm">
-        <label for="productName">Name:</label>
-        <input type="text" id="search-input" name="productName" placeholder="Product Name" required>
+        <input type="text" id="search-input" name="productName" placeholder="Product Name or description..." required>
 
         <button type="button" onclick="filterProducts()">Find Product</button>
     </form>
