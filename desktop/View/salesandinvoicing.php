@@ -95,12 +95,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt_invoice->close();
         $stmt_product->close();
         $conn->close();
-        
-        
-    
+    }
 
-    //Delette
-    // Deletion Logic
+    // Delete
     if (isset($_POST['id'])) {
         $id = $_POST['id']; // Get the ID from POST request
 
@@ -114,62 +111,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $conn->begin_transaction();
 
         try {
-            // Prepare DELETE query for lpa_invoices
-            $stmtClient = $conn->prepare("DELETE FROM lpa_invoices WHERE lpa_invitem_no = ?");
-            if (!$stmtClient) {
-                echo json_encode(["error" => "Error preparing SQL query for lpa_clients"]);
-                $conn->rollback();
-                exit;
-            }
+            // Delete from lpa_invoices
+            $stmtInvoice = $conn->prepare("DELETE FROM lpa_invoices WHERE lpa_inv_no = ?");
+            $stmtInvoice->bind_param("i", $id);
+            $stmtInvoice->execute();
 
-            // Bind the ID for invoices deletion
-            $stmtClient->bind_param("i", $id);
+            // Delete from lpa_invoice_items
+            $stmtItems = $conn->prepare("DELETE FROM lpa_invoice_items WHERE lpa_invitem_inv_no = ?");
+            $stmtItems->bind_param("i", $id);
+            $stmtItems->execute();
 
-            // Execute the query for lpa_invoices
-            if (!$stmtClient->execute()) {
-                echo json_encode(["error" => "Error deleting client data: " . $stmtClient->error]);
-                $conn->rollback();
-                $stmtClient->close();
-                exit;
-            }
-
-            // Prepare DELETE query for lpa_users
-            $stmtUser = $conn->prepare("DELETE FROM lpa_invoice_items WHERE lpa_invitem_inv_no = ?");
-            if (!$stmtUser) {
-                echo json_encode(["error" => "Error preparing SQL query for lpa_users"]);
-                $conn->rollback();
-                $stmtClient->close();
-                exit;
-            }
-
-            // Bind the ID for user deletion
-            $stmtUser->bind_param("i", $id);
-
-            // Execute the query for lpa_users
-            if (!$stmtUser->execute()) {
-                echo json_encode(["error" => "Error deleting user data: " . $stmtUser->error]);
-                $conn->rollback();
-                $stmtClient->close();
-                $stmtUser->close();
-                exit;
-            }
-
-            // Commit the transaction if both deletions succeed
+            // Commit the transaction
             $conn->commit();
 
-            // Close statements and connection
-            $stmtClient->close();
-            $stmtUser->close();
-            $conn->close();
-
-            echo json_encode(["success" => "Data deleted successfully"]);
-            exit;
+            echo json_encode(["success" => "Invoice deleted successfully."]);
         } catch (Exception $e) {
-            echo json_encode(['error' => $e->getMessage()]);
-            exit;
+            $conn->rollback();
+            echo json_encode(["error" => $e->getMessage()]);
         }
+
+        $stmtInvoice->close();
+        $stmtItems->close();
+        $conn->close();
+        exit;
     }
-}
 }
 
 ?>

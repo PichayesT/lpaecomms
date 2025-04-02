@@ -16,7 +16,7 @@ if (isset($_GET['id'])) {
         echo "<table border='1' style='width: 100%; text-align: left;'>";
         echo "<thead>
                 <tr>
-                    <th>Stock ID</th>
+                    <th>Invoice No</th>
                     <th>Stock Name</th>
                     <th>Quantity</th>
                     <th>Price</th>
@@ -24,15 +24,25 @@ if (isset($_GET['id'])) {
                 </tr>
               </thead>";
         echo "<tbody>";
+
+        $grandTotal = 0; // Initialize total amount
         while ($row = $result->fetch_assoc()) {
+            $grandTotal += $row['lpa_invitem_stock_amount']; // Add to total
             echo "<tr>
-                    <td>" . htmlspecialchars($row['lpa_invitem_stock_ID']) . "</td>
+                    <td>" . htmlspecialchars($row['lpa_invitem_inv_no']) . "</td>
                     <td>" . htmlspecialchars($row['lpa_invitem_stock_name']) . "</td>
                     <td>" . htmlspecialchars($row['lpa_invitem_qty']) . "</td>
                     <td>" . number_format($row['lpa_invitem_stock_price'], 2) . "</td>
                     <td>" . number_format($row['lpa_invitem_stock_amount'], 2) . "</td>
                   </tr>";
         }
+
+        // Add a row for the total at the end
+        echo "<tr>
+                <td colspan='4' style='text-align: right; font-weight: bold;'>Grand Total:</td>
+                <td style='font-weight: bold;'>" . number_format($grandTotal, 2) . "</td>
+              </tr>";
+
         echo "</tbody>";
         echo "</table>";
     } else {
