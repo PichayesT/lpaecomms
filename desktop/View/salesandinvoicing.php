@@ -303,7 +303,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 echo "<td class='invoice-address'>" . htmlspecialchars($item["lpa_inv_client_address"]) . "</td>";
                 echo "<td class='invoice-amount'>" . number_format($item["lpa_inv_amount"], 2) . "</td>";
                 echo "<td>
-                        <button class='update-btn' onclick='updateUserInUI(this)'>Check detail</button>
+                        <button class='update-btn' onclick='openInvoiceDetails(" . $item["lpa_inv_no"] . ")'>Check Detail</button>
                         <button class='delete-btn' data-id='" . $item["lpa_inv_no"] . "' onclick='deleteProductInUI(this)'>Delete</button>
                       </td>";
                 echo "</tr>";
