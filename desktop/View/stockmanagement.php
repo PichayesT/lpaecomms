@@ -1,22 +1,22 @@
-
 <?php
     session_start(); 
     include '../model/config.php';
     //Update
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (isset($_POST['id']) && isset($_POST['name']) && isset($_POST['url']) && isset($_POST['description']) && isset($_POST['quantity']) && isset($_POST['price'])) {
+    if (isset($_POST['id']) && isset($_POST['name']) && isset($_POST['url']) && isset($_POST['description']) && isset($_POST['quantity']) && isset($_POST['price']) && isset($_POST['status'])) {
         $id = $_POST['id'];
         $name = $_POST['name'];
         $url = $_POST['url'];
         $description = $_POST['description'];
         $quantity = $_POST['quantity'];
         $price = $_POST['price'];
+        $status = $_POST['status']; // Get the status (1 or 0)
 
         // Update SQL query
-        $sql = "UPDATE lpa_stock SET lpa_stock_name = ?, lpa_stock_picture = ?, lpa_stock_desc = ?, lpa_stock_onhand = ?, lpa_stock_price = ? WHERE lpa_stock_ID = ?";
+        $sql = "UPDATE lpa_stock SET lpa_stock_name = ?, lpa_stock_picture = ?, lpa_stock_desc = ?, lpa_stock_onhand = ?, lpa_stock_price = ?, lpa_stock_status = ? WHERE lpa_stock_ID = ?";
 
         if ($stmt = $conn->prepare($sql)) {
-            $stmt->bind_param("sssidi", $name, $url, $description, $quantity, $price, $id);
+            $stmt->bind_param("sssidsi", $name, $url, $description, $quantity, $price, $status, $id);
             if ($stmt->execute()) {
                 echo "Product updated successfully!";
             } else {
@@ -173,7 +173,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <th>Description</th>
                 <th>Quantity</th>
                 <th>Price ($)</th>
-                <th>Total ($)</th>
+                <th>status</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -194,6 +194,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Loop through the stock items and display them
             foreach ($stock_items as $index => $item) {
                 $total = $item['lpa_stock_onhand'] * $item['lpa_stock_price']; // Calculate the total
+                $status = $item['lpa_stock_status'] == 1 ? "Enabled" : "Disabled"; // Convert 1/0 to Enabled/Disabled
+
                 echo "<tr class='product' data-id='" . $item["lpa_stock_ID"] . "'>";  // Added class 'product' to each row
                 echo "<td>" . htmlspecialchars($item["lpa_stock_ID"]) . "</td>";
                 echo "<td class='product-name'>" . htmlspecialchars($item["lpa_stock_name"]) . "</td>";
@@ -201,11 +203,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 echo "<td class='product-desc'>" . htmlspecialchars($item["lpa_stock_desc"]) . "</td>";
                 echo "<td class='product-quantity'>" . htmlspecialchars($item["lpa_stock_onhand"]) . "</td>";
                 echo "<td class='product-price'>" . number_format($item["lpa_stock_price"], 2) . "</td>";
-                echo "<td class='product-total'>" . number_format($total, 2) . "</td>";
+                echo "<td class='product-status'>" . htmlspecialchars($status) . "</td>"; // Display Enabled/Disabled
                 echo "<td>
                         <button class='update-btn' onclick='updateProductInUI(this)'>Update</button>
                         <button class='delete-btn' data-id='" . $item["lpa_stock_ID"] . "' onclick='deleteProductInUI(this)'>Delete</button>
-                        </td>";
+                      </td>";
                 echo "</tr>";
             }
         ?>

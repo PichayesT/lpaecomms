@@ -55,7 +55,7 @@
                 include('../model/config.php');
 
                 // Fetch the products from the database
-                $sql = "SELECT * FROM lpa_stock";  // Adjust this query to match your table and columns
+                $sql = "SELECT * FROM lpa_stock WHERE lpa_stock_status = '1'";  // Adjust this query to match your table and columns
                 $result = $conn->query($sql);
 
                 if ($result->num_rows > 0) {

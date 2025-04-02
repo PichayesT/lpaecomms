@@ -153,8 +153,9 @@ function updateProductInUI(button) {
     const description = row.querySelector('.product-desc').textContent;
     const quantity = row.querySelector('.product-quantity').textContent;
     const price = row.querySelector('.product-price').textContent;
+    const status = row.querySelector('.product-status').textContent;
 
-    console.log("Current values:", name, url, description, quantity, price);
+    console.log("Current values:", name, url, description, quantity, price, status);
 
     // Prompt the user for new values
     const newName = prompt("Enter new product name:", name);
@@ -162,15 +163,25 @@ function updateProductInUI(button) {
     const newDescription = prompt("Enter new description:", description);
     const newQuantity = prompt("Enter new quantity:", quantity);
     const newPrice = prompt("Enter new price:", price);
+    const newStatus = prompt("Enter new status (Enabled/Disabled):", status);
 
-    console.log("New values:", newName, newURL, newDescription, newQuantity, newPrice);
+    console.log("New values:", newName, newURL, newDescription, newQuantity, newPrice, newStatus);
 
-    // Only check for invalid input when the user has changed any of the values
-    if ((newName !== name || newURL !== url || newDescription !== description || newQuantity !== quantity || newPrice !== price) && 
-        (!newName || !newURL || !newDescription || isNaN(newQuantity) || isNaN(newPrice))) {
+    // Validate inputs
+    if (
+        !newName.trim() || // Check if the name is empty
+        !newURL.trim() || // Check if the URL is empty
+        !newDescription.trim() || // Check if the description is empty
+        isNaN(newQuantity) || newQuantity.trim() === "" || // Check if quantity is not a number or empty
+        isNaN(newPrice) || newPrice.trim() === "" || // Check if price is not a number or empty
+        (newStatus !== "Enabled" && newStatus !== "Disabled") // Check if status is not "Enabled" or "Disabled"
+    ) {
         alert("Invalid input. Update canceled.");
         return; // Exit the function if invalid input
     }
+
+    // Convert status to database format (1 for Enabled, 0 for Disabled)
+    const statusValue = newStatus === "Enabled" ? 1 : 0;
 
     // Update the UI immediately with the new values
     row.querySelector('.product-name').textContent = newName;
@@ -178,20 +189,22 @@ function updateProductInUI(button) {
     row.querySelector('.product-desc').textContent = newDescription;
     row.querySelector('.product-quantity').textContent = newQuantity;
     row.querySelector('.product-price').textContent = newPrice;
-    row.querySelector('.product-total').textContent = (newQuantity * newPrice).toFixed(2);
+    row.querySelector('.product-status').textContent = newStatus;
 
     // Send AJAX request to update the database with the new values
     const xhr = new XMLHttpRequest();
     xhr.open("POST", "stockmanagement.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.onload = function() {
+    xhr.onload = function () {
         if (xhr.status === 200) {
             alert("Product updated successfully!");
         } else {
             alert("Error updating product.");
         }
     };
-    xhr.send(`id=${id}&name=${newName}&url=${newURL}&description=${newDescription}&quantity=${newQuantity}&price=${newPrice}`);
+    xhr.send(
+        `id=${id}&name=${newName}&url=${newURL}&description=${newDescription}&quantity=${newQuantity}&price=${newPrice}&status=${statusValue}`
+    );
 }
 
 
@@ -219,4 +232,3 @@ function deleteProductInUI(button) {
 }
 
 
-    
