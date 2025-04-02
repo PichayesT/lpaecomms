@@ -35,11 +35,13 @@ header {
 .menu-item {
     position: relative;
     padding: 10px 15px;
+    font-size: 18px;
 }
 
 .menu-item a {
     color: black;
     text-decoration: none;
+    font-size: 18px;
 }
 
 .menu-item:hover {
@@ -53,7 +55,7 @@ header {
     top: 100%;
     left: 0;
     background-color:#4CAF50;
-    width: 200px;
+    width: 250px;
 }
 
 .menu-item:hover .submenu {
@@ -61,8 +63,9 @@ header {
 }
 
 .submenu li {
-    padding: 10px;
+    padding: 12px 15px;
     text-align: left;
+    font-size: 15px;
 }
 
 .submenu li a {
@@ -80,16 +83,17 @@ header {
     top: 100%;
     left: 10;
     background-color:#4CAF50;
-    width: 150px;
+    width: 200px;
 }
 
 .sub li {
     padding: 5px;
     text-align: left;
+    font-size: 10px;
 }
 
 .sub li a {
-    color: black;
+    color: blue;
     text-decoration: none;
 }
 
