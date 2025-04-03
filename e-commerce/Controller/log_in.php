@@ -26,7 +26,7 @@
                 $_SESSION['address'] = $user['lpa_user_group'];
                 $_SESSION['username'] = $user['lpa_user_username'];
                 $_SESSION['role'] = $user['lpa_user_group'];
-                $_SESSION['success_message'] = 'Welcome to system.';
+                $_SESSION['success_message'] = 'Welcome to the system.';
                 header("Location: ../view/product.php");
                 exit(); // Ensure no further code is executed after redirection
             } else {

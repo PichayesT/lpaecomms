@@ -5,12 +5,12 @@
     if (isset($_POST['submit'])) {
         $username = trim($_POST['username']);
         $password = trim($_POST['password']);
-        $group = 'user';
+        $group = ['user', 'admin'];
 
         // Prepare SQL query to prevent SQL injection
-        $sql = "SELECT * FROM lpa_users WHERE lpa_user_username = ? AND lpa_user_group = ?";
+        $sql = "SELECT * FROM lpa_users WHERE lpa_user_username = ? AND lpa_user_group IN (?, ?)";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("ss", $username, $group); 
+        $stmt->bind_param("sss", $username, $group[0], $group[1]); 
         $stmt->execute();
 
         $result = $stmt->get_result();
@@ -26,7 +26,7 @@
                 $_SESSION['address'] = $user['lpa_user_group'];
                 $_SESSION['username'] = $user['lpa_user_username'];
                 $_SESSION['role'] = $user['lpa_user_group'];
-                $_SESSION['success_message'] = 'Welcome to system.';
+                $_SESSION['success_message'] = 'Welcome to the system.';
                 header("Location: login.php");
                 exit(); // Ensure no further code is executed after redirection
             } else {
