@@ -211,9 +211,15 @@ function updateUserInUI(button) {
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.onload = function() {
         if (xhr.status === 200) {
-            alert("Users updated successfully!");
+            console.log("Response:", xhr.responseText);
+            const response = JSON.parse(xhr.responseText);
+            if (response.success) {
+                alert("Admin updated successfully!");
+            } else if (response.error) {
+                alert("Error: " + response.error);
+            }
         } else {
-            alert("Error updating users.");
+            alert("Error updating admin.");
         }
     };
 
