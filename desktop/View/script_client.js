@@ -97,6 +97,9 @@ function uploadDataInStock() {
         return;
     }
 
+     // Add the group as 'client' to each user in the stock array
+     stock = stock.map(user => ({ ...user, group: 'client' }));
+     
     // Convert stock array to a JSON string
     const stockData = JSON.stringify(stock);
 
