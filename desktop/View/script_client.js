@@ -99,7 +99,7 @@ function uploadDataInStock() {
 
      // Add the group as 'client' to each user in the stock array
      stock = stock.map(user => ({ ...user, group: 'client' }));
-     
+
     // Convert stock array to a JSON string
     const stockData = JSON.stringify(stock);
 
@@ -118,8 +118,7 @@ function uploadDataInStock() {
             // Directly check for success or error
             if (response.success) {
                 alert(response.success);  // If success, show the success message
-                // Clear the tbody content
-                //window.location.reload();
+                clearAllData();
             } else if (response.error) {
                 alert(response.error);  // If error, show the error message
             }
@@ -257,3 +256,30 @@ function deleteUserInUI(button) {
     xhr.send(`id=${id}`);  // Send ID to PHP for deletion
 }
 
+function clearAllData() {
+    // Clear all input fields
+    document.getElementById('firstName').value = '';
+    document.getElementById('lastName').value = '';
+    document.getElementById('address').value = '';
+    document.getElementById('phoneNumber').value = '';
+    document.getElementById('userName').value = '';
+    document.getElementById('password').value = '';
+
+    // Clear the search input field
+    const searchInput = document.getElementById('search-input');
+    if (searchInput) {
+        searchInput.value = '';
+    }
+
+    // Clear the table
+    const tbody = document.getElementById('User').querySelector('tbody');
+    tbody.innerHTML = '';
+
+    // Clear the stock array
+    stock = [];
+
+    // Disable the submit button if no data is present
+    document.getElementById('submitButton').disabled = true;
+
+    alert('All data has been cleared.');
+}
