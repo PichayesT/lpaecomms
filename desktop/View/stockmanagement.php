@@ -117,7 +117,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <h4>Add New Product</h4>
     <form id="addProductForm">
 
-        <!--<label for="productName">Name:</label>-->  <!          
+        <!--<label for="productName">Name:</label>-->     
         <input type="text" id="productName" name="productName" placeholder="Product Name" required>
 
         <!--<label for="productPicture">URL:</label>-->
