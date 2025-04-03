@@ -42,7 +42,7 @@
                 try {
                     // Hash the password before saving it
                     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-                    $defaultGroup = 'admin';  // Default group for the user
+                    $defaultGroup = 'user';  // Default group for the user
                     $defaultStatus = '1';    // Default status for the user
 
                     // Begin transaction to insert into both tables
