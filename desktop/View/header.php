@@ -44,7 +44,7 @@
                             <ul class="sub">
                                 <li><a href="../view/clientsmanagement.php">Clients management</a></li>
                                 <li><a href="../view/usersmanagement.php">Users management</a></li>
-                                <li><a href="../view/usersmanagement.php">Admin management</a></li>
+                                <li><a href="../view/adminmanagement.php">Admin management</a></li>
                             </ul>
                         <?php endif; ?>
                         </a></li>

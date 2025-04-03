@@ -16,7 +16,9 @@
             <ul>
                 <li><a href="stockmanagement.php">Manage Stock</a></li>
                 <li><a href="salesandinvoicing.php">Sales and Invoicing</a></li>
-                <li><a href="clientsmanagement.php">Clients Management</a></li>
+                <?php if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] && $_SESSION['role'] === 'admin'): ?>
+                    <li><a href="clientsmanagement.php">Clients Management</a></li> 
+                <?php endif; ?>
                 <li><a href="usersguide.php">User Guide</a></li>
                 <li><a href="about.php">About the System</a></li>
             </ul>

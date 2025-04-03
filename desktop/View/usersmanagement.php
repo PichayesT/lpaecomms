@@ -202,7 +202,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $password = $user['password'];
             $firstName = sanitizeInput($user['firstName']);
             $lastName = sanitizeInput($user['lastName']);
-            $group = 'admin'; // Default user group
+            $group = 'user'; // Default user group
             $status = '1'; // Default user status
 
             // Check if the username already exists
@@ -353,7 +353,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             FROM lpa_clients c
             INNER JOIN lpa_users u 
             ON c.lpa_client_ID = u.lpa_user_ID
-            WHERE u.lpa_user_group = 'admin'";
+            WHERE u.lpa_user_group = 'user'";
 
             $result = $conn->query($sql);
 
