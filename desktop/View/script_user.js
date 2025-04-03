@@ -117,8 +117,7 @@ function uploadDataInStock() {
             // Directly check for success or error
             if (response.success) {
                 alert(response.success);  // If success, show the success message
-                // Clear the tbody content
-                //window.location.reload();
+                clearAllData();
             } else if (response.error) {
                 alert(response.error);  // If error, show the error message
             }
