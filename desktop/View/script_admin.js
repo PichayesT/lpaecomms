@@ -92,7 +92,7 @@ function deleteUserInStock(index) {
 function uploadDataInStock() {
     // Check if there's any product data in stock
     if (stock.length === 0) {
-        alert("No users to upload.");
+        alert("No admins to upload.");
         return;
     }
 
@@ -101,7 +101,7 @@ function uploadDataInStock() {
 
     // Send the stock data to the server using an AJAX request
     const xhr = new XMLHttpRequest();
-    xhr.open("POST", "usersmanagement.php", true);
+    xhr.open("POST", "adminmanagement.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
     xhr.onload = function () {
@@ -205,7 +205,7 @@ function updateUserInUI(button) {
 
     // Send AJAX request to update the database with the new values
     const xhr = new XMLHttpRequest();
-    xhr.open("POST", "usersmanagement.php", true);
+    xhr.open("POST", "adminmanagement.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.onload = function() {
         if (xhr.status === 200) {
@@ -229,7 +229,7 @@ function deleteUserInUI(button) {
 
     // Send AJAX request to delete the user
     const xhr = new XMLHttpRequest();
-    xhr.open("POST", "usersmanagement.php", true);
+    xhr.open("POST", "adminmanagement.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
     xhr.onload = function() {

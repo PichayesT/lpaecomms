@@ -206,9 +206,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $status = '1'; // Default user status
 
             // Check if the username already exists
-            $query = "SELECT COUNT(*) AS count FROM lpa_users WHERE lpa_user_username = ?";
+            $query = "SELECT COUNT(*) AS count FROM lpa_users WHERE lpa_user_username = ? AND lpa_client_status = ?";
             $stmtCheck = $conn->prepare($query);
-            $stmtCheck->bind_param("s", $userName);
+            $stmtCheck->bind_param("ss", $userName, $group);
             $stmtCheck->execute();
             $stmtCheck->bind_result($count);
             $stmtCheck->fetch();

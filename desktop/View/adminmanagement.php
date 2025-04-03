@@ -39,9 +39,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         // Check if the username already exists for a different user
-        $queryUsername = "SELECT COUNT(*) AS count FROM lpa_users WHERE lpa_user_username = ? AND lpa_user_ID != ?";
+        $queryUsername = "SELECT COUNT(*) AS count FROM lpa_users WHERE lpa_user_username = ? AND lpa_user_group = ?";
         $stmtCheckUsername = $conn->prepare($queryUsername);
-        $stmtCheckUsername->bind_param("si", $userName, $id);
+        $stmtCheckUsername->bind_param("ss", $userName, $group);
         $stmtCheckUsername->execute();
         $stmtCheckUsername->bind_result($usernameCount);
         $stmtCheckUsername->fetch();
