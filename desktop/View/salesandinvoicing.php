@@ -213,13 +213,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </tbody>
     </table>
     <br></br>
-    <tfoot>
-        <tr>
-           <!--<td id="totalAmount">$0.00</td>--> <!-- This is where the total amount will appear -->
-           <p>Total: $<span id="totalAmount">0</span></p>
-       </tr>
-   </tfoot>
-    </tfoot>
 </div>
 
 

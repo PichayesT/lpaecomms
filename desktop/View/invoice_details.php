@@ -1,4 +1,5 @@
 <?php
+session_start(); 
 // filepath: c:\Warmpserver\www\lpaecomms\desktop\View\invoice_details.php
 include '../model/config.php';
 
@@ -12,7 +13,7 @@ if (isset($_GET['id'])) {
     $result = $stmt->get_result();
 
     if ($result->num_rows > 0) {
-        echo "<h3>Invoice Details (ID: $invoiceId)</h3>";
+        echo "<h3 style='margin-top: 60px;'>Invoice Details (ID: $invoiceId)</h3>";
         echo "<table border='1' style='width: 100%; text-align: left;'>";
         echo "<thead>
                 <tr>
