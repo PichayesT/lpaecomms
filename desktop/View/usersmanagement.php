@@ -19,6 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $userName = sanitizeInput($_POST['userName']);
         $password = $_POST['password'];
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+        $group = 'user'; // Default user group
 
         // Start transaction to ensure both updates are applied successfully
         $conn->begin_transaction();
@@ -39,9 +40,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         // Check if the username already exists for a different user
-        $queryUsername = "SELECT COUNT(*) AS count FROM lpa_users WHERE lpa_user_username = ? AND lpa_user_ID != ?";
+        $queryUsername = "SELECT COUNT(*) AS count FROM lpa_users WHERE lpa_user_username = ? AND lpa_user_group = ? AND lpa_user_ID != ?";
         $stmtCheckUsername = $conn->prepare($queryUsername);
-        $stmtCheckUsername->bind_param("si", $userName, $id);
+        $stmtCheckUsername->bind_param("ssi", $userName , $group, $id);
         $stmtCheckUsername->execute();
         $stmtCheckUsername->bind_result($usernameCount);
         $stmtCheckUsername->fetch();
