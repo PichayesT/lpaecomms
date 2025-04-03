@@ -16,6 +16,7 @@
         $username = sanitizeInput($_POST['username']);
         $password = $_POST['password'];
         $confirmPassword = $_POST['confirmPassword'];
+        $group = 'user';
         echo "<script>alert('Sanitized Data:\nFirst Name: " . htmlspecialchars($firstName) . "\nLast Name: " . htmlspecialchars($lastName) . "\nAddress: " . htmlspecialchars($address) . "\nPhone Number: " . htmlspecialchars($phoneNumber) . "\nUsername: " . htmlspecialchars($username) . "\nPassword: " . htmlspecialchars($password) . "\nConfirm Password: " . htmlspecialchars($confirmPassword) . "');</script>";
 
         // Validate input fields
@@ -26,9 +27,9 @@
             $_SESSION['error_message'] = 'Passwords do not match. Please try again.';
         } else {
             // Check if the username already exists
-            $query = "SELECT COUNT(*) AS count FROM lpa_users WHERE lpa_user_username = ?";
+            $query = "SELECT COUNT(*) AS count FROM lpa_users WHERE lpa_user_username = ? AND lpa_user_group = ?";
             $stmt = $conn->prepare($query);
-            $stmt->bind_param("s", $username);
+            $stmt->bind_param("ss", $username, $group);
             $stmt->execute();
             $stmt->bind_result($count);
             $stmt->fetch();

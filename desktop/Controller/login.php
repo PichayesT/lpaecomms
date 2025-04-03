@@ -5,7 +5,7 @@
     if (isset($_POST['submit'])) {
         $username = trim($_POST['username']);
         $password = trim($_POST['password']);
-        $group = 'admin';
+        $group = 'user';
 
         // Prepare SQL query to prevent SQL injection
         $sql = "SELECT * FROM lpa_users WHERE lpa_user_username = ? AND lpa_user_group = ?";
@@ -65,7 +65,7 @@
     
     <div class="login">
         <div class="dialog">
-            <h2>Administration Login</h2>
+            <h2>User Login</h2>
             <form action="login.php" method="POST"> <!-- Ensure this is the correct path -->
                 <div class="input-group">
                     <label for="username">Username:</label>
