@@ -351,7 +351,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             FROM lpa_clients c
             INNER JOIN lpa_users u 
             ON c.lpa_client_ID = u.lpa_user_ID
-            WHERE u.lpa_user_group = 'user'";
+            WHERE u.lpa_user_group = 'client'";
 
             $result = $conn->query($sql);
 

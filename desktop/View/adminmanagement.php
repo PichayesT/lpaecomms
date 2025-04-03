@@ -18,6 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $userName = sanitizeInput($_POST['userName']);
         $password = $_POST['password'];
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+        $group = 'admin'; // Default user group
 
         // Start transaction to ensure both updates are applied successfully
         $conn->begin_transaction();
@@ -205,9 +206,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $status = '1'; // Default user status
 
             // Check if the username already exists
-            $query = "SELECT COUNT(*) AS count FROM lpa_users WHERE lpa_user_username = ?";
+            $query = "SELECT COUNT(*) AS count FROM lpa_users WHERE lpa_user_username = ? AND lpa_client_status = ?";
             $stmtCheck = $conn->prepare($query);
-            $stmtCheck->bind_param("s", $userName);
+            $stmtCheck->bind_param("ss", $userName, $group);
             $stmtCheck->execute();
             $stmtCheck->bind_result($count);
             $stmtCheck->fetch();
@@ -271,10 +272,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 
 
-<h1>Users Management System</h1>
+<h1>Admin Management System</h1>
 <!--Table1-->
 <div class="container">
-    <h4>Add New User</h4>
+    <h4>Add New Admin</h4>
     <form id="addUserForm">
         <!--<label for="firstName">First Name:</label>-->
         <input type="text" id="firstName" name="firstName" placeholder="firstName" required>
@@ -323,7 +324,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <!--Table2-->
 <div class="container_1">
-    <h4>Update User Information</h4>
+    <h4>Update Admin Information</h4>
     <form id="UpdateUserForm">
         <input type="text" id="search-input" name="firstName" placeholder="User details..." required>
         <button type="button" onclick="filterUsers()">Find User</button>
