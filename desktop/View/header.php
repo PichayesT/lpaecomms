@@ -22,7 +22,7 @@
                 <li class="menu-item">Menu
                     <ul class="submenu">
                         <li><a href="#">Stock Management
-                        <?php if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] && $_SESSION['role'] === 'admin'): ?>
+                        <?php if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] && in_array($_SESSION['role'], ['user', 'admin'])): ?>
                             <ul class="sub"> 
                                 <li><a href="../view/stockmanagement.php">Stocking</a></li>
                             </ul>
@@ -31,7 +31,7 @@
                         <li><hr></li>
 
                         <li><a href="#">Sales and Invoicing
-                        <?php if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] && $_SESSION['role'] === 'admin'): ?>
+                        <?php if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] && in_array($_SESSION['role'], ['user', 'admin'])): ?>
                             <ul class="sub">
                                 <li><a href="../view/salesandinvoicing.php">Invoices management</a></li>
                             </ul>
@@ -42,14 +42,15 @@
                         <li><a href="#">System Administration
                         <?php if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] && $_SESSION['role'] === 'admin'): ?>
                             <ul class="sub">
-                                <li><a href="../view/usersmanagement.php">Users management</a></li>
                                 <li><a href="../view/clientsmanagement.php">Clients management</a></li>
+                                <li><a href="../view/usersmanagement.php">Users management</a></li>
+                                <li><a href="../view/usersmanagement.php">Admin management</a></li>
                             </ul>
                         <?php endif; ?>
                         </a></li>
                         <li><hr></li>
                         
-                        <?php if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] && $_SESSION['role'] === 'admin'): ?>
+                        <?php if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] && in_array($_SESSION['role'], ['user', 'admin'])): ?>
                             <li><a href="../view/index.php">Exit</a></li>
                         <?php endif; ?>
                     </ul>
@@ -67,8 +68,3 @@
             </ul>
         </div>
 </header>
-
-
-<?php if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] && $_SESSION['role'] === 'user'): ?>
-                <li><a href="../view/cart.php" class="cart">(0)</a></li>
-            <?php endif; ?>
