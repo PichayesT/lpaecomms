@@ -36,7 +36,7 @@
             <li><a href="../view/product.php">Product</a></li>       
             <li><a href="../view/about.php">About</a></li>
             <li><a href="../view/contact.php">Contact</a></li>
-            <?php if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] && in_array($_SESSION['role'], ['client', 'user', 'admin'])): ?>
+            <?php if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] && $_SESSION['role'] === 'client'): ?>
                 <li><a href="../view/cart.php" class="cart">(0)</a></li>
             <?php endif; ?>
             <li><a href="<?php echo isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] ? '../controller/log_out.php' : '../controller/log_in.php'; ?>">

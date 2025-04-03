@@ -5,17 +5,16 @@
     if (isset($_POST['submit'])) {
         $username = trim($_POST['username']);
         $password = trim($_POST['password']);
-        $allowedGroups = ['client', 'user', 'admin']; // Define allowed groups
+        $group = 'client';
 
         // Prepare SQL query to prevent SQL injection
-        $sql = "SELECT * FROM lpa_users WHERE lpa_user_username = ? AND lpa_user_group IN (?, ?, ?)";
+        $sql = "SELECT * FROM lpa_users WHERE lpa_user_username = ? AND lpa_user_group = ?";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("ssss", $username, $allowedGroups[0], $allowedGroups[1], $allowedGroups[2]); // Bind all group values
+        $stmt->bind_param("ss", $username, $group); // "s" means string
 
         $stmt->execute();
         $result = $stmt->get_result();
         $user = $result->fetch_assoc();
-
         // Check if user exists and verify password
         if ($user) {
             if (password_verify($password, $user['lpa_user_password'])) {
@@ -27,7 +26,7 @@
                 $_SESSION['address'] = $user['lpa_user_group'];
                 $_SESSION['username'] = $user['lpa_user_username'];
                 $_SESSION['role'] = $user['lpa_user_group'];
-                $_SESSION['success_message'] = 'Welcome to the system.';
+                $_SESSION['success_message'] = 'Welcome to system.';
                 header("Location: ../view/product.php");
                 exit(); // Ensure no further code is executed after redirection
             } else {
