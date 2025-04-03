@@ -5,7 +5,7 @@
     if (isset($_POST['submit'])) {
         $username = trim($_POST['username']);
         $password = trim($_POST['password']);
-        $group = 'user';
+        $group = 'client';
 
         // Prepare SQL query to prevent SQL injection
         $sql = "SELECT * FROM lpa_users WHERE lpa_user_username = ? AND lpa_user_group = ?";
