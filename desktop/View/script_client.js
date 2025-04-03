@@ -172,8 +172,6 @@ function updateUserInUI(button) {
     const userName = row.querySelector('.user-userName').textContent;
     const password = row.querySelector('.user-password').textContent;
 
-    console.log("Current values:", firstName, lastName, address, phoneNumber, userName, password);
-
     // Prompt the user for new values
     const newfirstName = prompt("Enter new firstName:", firstName);
     const newlastName = prompt("Enter new lastName:", lastName);
@@ -182,45 +180,47 @@ function updateUserInUI(button) {
     const newuserName = prompt("Enter new userName:", userName);
     const newPassword = prompt("Enter new password:", '');
 
-    console.log("New values:", newfirstName, newlastName, newAddress, newphoneNumber, newuserName, newPassword);
-
-    // Only check for invalid input when the user has changed any of the values
-    if ((newfirstName !== firstName || newlastName !== lastName || newAddress !== address || newphoneNumber !== phoneNumber || newuserName !== userName || newPassword !== password) && 
-        (!newfirstName || !newlastName || !newAddress || !newphoneNumber || !newuserName || !newPassword)) {
+    // Validate inputs
+    if (!newfirstName || !newlastName || !newAddress || !newphoneNumber || !newuserName || !newPassword) {
         alert("Invalid input. Update canceled.");
-        return; // Exit the function if invalid input
+        return;
     }
 
-    // Sanitize the inputs before updating
+    // Sanitize the inputs
     const sanitizedFirstName = sanitizeInput(newfirstName);
     const sanitizedLastName = sanitizeInput(newlastName);
     const sanitizedAddress = sanitizeInput(newAddress);
     const sanitizedphoneNumber = sanitizeInput(newphoneNumber);
     const sanitizeduserName = sanitizeInput(newuserName);
 
-    // Update the UI immediately with the sanitized values
-    row.querySelector('.user-firstName').textContent = sanitizedFirstName;
-    row.querySelector('.user-lastName').textContent = sanitizedLastName;
-    row.querySelector('.user-address').textContent = sanitizedAddress;
-    row.querySelector('.user-phone').textContent = sanitizedphoneNumber;// No need to sanitize phone number here
-    row.querySelector('.user-userName').textContent = sanitizeduserName;
-    row.querySelector('.user-password').textContent = newPassword;
+    // Log the data being sent
+    console.log("Sending data:", {
+        id,
+        firstName: sanitizedFirstName,
+        lastName: sanitizedLastName,
+        address: sanitizedAddress,
+        phoneNumber: sanitizedphoneNumber,
+        userName: sanitizeduserName,
+        password: newPassword,
+    });
 
-    // Send AJAX request to update the database with the new values
+    // Send AJAX request to update the database
     const xhr = new XMLHttpRequest();
     xhr.open("POST", "clientsmanagement.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.onload = function() {
+    xhr.onload = function () {
         if (xhr.status === 200) {
+            console.log("Response:", xhr.responseText);
             alert("Clients updated successfully!");
         } else {
             alert("Error updating clients.");
         }
     };
 
-    xhr.send(`id=${id}&firstName=${sanitizedFirstName}&lastName=${sanitizedLastName}&address=${sanitizedAddress}&phoneNumber=${sanitizedphoneNumber}&userName=${sanitizeduserName}&password=${newPassword}`);
+    xhr.send(
+        `id=${id}&firstName=${sanitizedFirstName}&lastName=${sanitizedLastName}&address=${sanitizedAddress}&phoneNumber=${sanitizedphoneNumber}&userName=${sanitizeduserName}&password=${newPassword}`
+    );
 }
-
 
 function deleteUserInUI(button) {
     const row = button.closest('tr');
