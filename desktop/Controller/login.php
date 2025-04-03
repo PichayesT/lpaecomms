@@ -5,12 +5,12 @@
     if (isset($_POST['submit'])) {
         $username = trim($_POST['username']);
         $password = trim($_POST['password']);
-        $group = ['user', 'admin'];
+        $group = 'admin';
 
         // Prepare SQL query to prevent SQL injection
-        $sql = "SELECT * FROM lpa_users WHERE lpa_user_username = ? AND lpa_user_group IN (?, ?)";
+        $sql = "SELECT * FROM lpa_users WHERE lpa_user_username = ? AND lpa_user_group = ?";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("sss", $username, $group[0], $group[1]); 
+        $stmt->bind_param("ss", $username, $group); 
         $stmt->execute();
 
         $result = $stmt->get_result();

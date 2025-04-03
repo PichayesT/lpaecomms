@@ -52,42 +52,53 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit;
         }
 
-        try {
-            // Update lpa_users table
-            $sqlUser = "UPDATE lpa_users SET lpa_user_username = ?, lpa_user_password = ?, lpa_user_firstname = ?, lpa_user_lastname = ? WHERE lpa_user_ID = ?";
-            $stmtUser = $conn->prepare($sqlUser);
-            if (!$stmtUser) {
-                throw new Exception("Error preparing SQL query for lpa_users: " . $conn->error);
-            }
+        // Update SQL query for lpa_users
+        $sqlUser = "UPDATE lpa_users SET lpa_user_username = ?, lpa_user_password = ?, lpa_user_firstname = ?, lpa_user_lastname = ? WHERE lpa_user_ID = ?";
+        
+        // Prepare and execute the query for lpa_users
+        if ($stmtUser = $conn->prepare($sqlUser)) {
             $stmtUser->bind_param("ssssi", $userName, $hashedPassword, $firstName, $lastName, $id);
             if (!$stmtUser->execute()) {
-                throw new Exception("Error executing SQL query for lpa_users: " . $stmtUser->error);
+                echo json_encode(["error" => "Error updating user data: " . $stmtUser->error]);
+                $conn->rollback(); // Rollback transaction if user update fails
+                $stmtUser->close();
+                $conn->close();
+                exit;
             }
             $stmtUser->close();
-    
-            // Update lpa_clients table
-            $sqlClient = "UPDATE lpa_clients SET lpa_client_firstname = ?, lpa_client_lastname = ?, lpa_client_address = ?, lpa_client_phone = ? WHERE lpa_client_ID = ?";
-            $stmtClient = $conn->prepare($sqlClient);
-            if (!$stmtClient) {
-                throw new Exception("Error preparing SQL query for lpa_clients: " . $conn->error);
-            }
+        } else {
+            echo json_encode(["error" => "Error preparing SQL query for lpa_users."]);
+            $conn->rollback(); // Rollback transaction if user update preparation fails
+            $conn->close();
+            exit;
+        }
+
+        // Update SQL query for lpa_clients
+        $sqlClient = "UPDATE lpa_clients SET lpa_client_firstname = ?, lpa_client_lastname = ?, lpa_client_address = ?, lpa_client_phone = ? WHERE lpa_client_ID = ?";
+
+        // Prepare and execute the query for lpa_clients
+        if ($stmtClient = $conn->prepare($sqlClient)) {
             $stmtClient->bind_param("ssssi", $firstName, $lastName, $address, $phoneNumber, $id);
             if (!$stmtClient->execute()) {
-                throw new Exception("Error executing SQL query for lpa_clients: " . $stmtClient->error);
+                echo json_encode(["error" => "Error updating client data: " . $stmtClient->error]);
+                $conn->rollback(); // Rollback transaction if client update fails
+                $stmtClient->close();
+                $conn->close();
+                exit;
             }
             $stmtClient->close();
-    
-            // Commit transaction
-            $conn->commit();
-            echo json_encode(["success" => "User and client data updated successfully!"]);
-        } catch (Exception $e) {
-            $conn->rollback();
-            echo json_encode(["error" => $e->getMessage()]);
+        } else {
+            echo json_encode(["error" => "Error preparing SQL query for lpa_clients."]);
+            $conn->rollback(); // Rollback transaction if client update preparation fails
+            $conn->close();
+            exit;
         }
-    
+
+        // Commit the transaction if both updates succeed
+        $conn->commit();
         $conn->close();
+        echo json_encode(["success" => "User and client data updated successfully!"]);
         exit;
-        
     }
 
     // Deletion Logic
