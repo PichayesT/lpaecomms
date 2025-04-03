@@ -201,7 +201,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $password = $user['password'];
             $firstName = sanitizeInput($user['firstName']);
             $lastName = sanitizeInput($user['lastName']);
-            $group = 'user'; // Default user group
+            $group = 'client'; // Default user group
             $status = '1'; // Default user status
 
             // Check if the username already exists
