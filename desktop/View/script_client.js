@@ -275,8 +275,6 @@ function clearAllData() {
     const tbody = document.getElementById('User').querySelector('tbody');
     tbody.innerHTML = '';
 
-    const tbody1 = document.getElementById('stockTable_1').querySelector('tbody');
-    tbody1.innerHTML = '';
 
     // Clear the stock array
     stock = [];
