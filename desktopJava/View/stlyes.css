@@ -1,0 +1,125 @@
+/*/////////////////////*/
+/* index */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header {
+    position: fixed;
+    background-color: #4CAF50;
+    color: back;
+    padding: 10px 0;
+    text-align: center;
+}
+
+.menu-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #4CAF50;
+    color: black;
+    z-index: 1000; /* Ensure menu is above other content */
+}
+
+.menu {
+    list-style-type: none;
+    display: flex;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: black;
+}
+
+.menu-item {
+    position: relative;
+    padding: 10px 15px;
+    font-size: 18px;
+}
+
+.menu-item a {
+    color: black;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.menu-item:hover {
+    background-color: white;
+}
+
+.submenu {
+    display: none;
+    list-style-type: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color:#4CAF50;
+    width: 250px;
+}
+
+.menu-item:hover .submenu {
+    display: block;
+}
+
+.submenu li {
+    padding: 12px 15px;
+    text-align: left;
+    font-size: 15px;
+}
+
+.submenu li a {
+    color: black;
+    text-decoration: none;
+}
+
+.submenu li a:hover {
+    background-color: white;
+}
+
+.sub {
+    list-style-type:disc;
+    position:relative;
+    top: 100%;
+    left: 10;
+    background-color:#4CAF50;
+    width: 200px;
+}
+
+.sub li {
+    padding: 5px;
+    text-align: left;
+    font-size: 10px;
+}
+
+.sub li a {
+    color: blue;
+    text-decoration: none;
+}
+
+.sub li a:hover {
+    background-color: white;
+}
+
+/* Separator line */
+hr {
+    margin: 10px 0;
+    border: 0;
+    border-top: 1px solid #ccc;
+}
+
+.content {
+    padding-top: 10px; /* Space for fixed menu */
+    padding: 70px 10px;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+/* Ensure the content fills the full height */
+body {
+    display: flex;
+    flex-direction: column;
+}
