@@ -1,36 +1,17 @@
 <%@ include file="../view/header.jsp" %>
 
-
-
 <h1>Users Management System</h1>
-<!--Table1-->
 <div class="container">
     <h4>Add New User</h4>
     <form id="addUserForm">
-        <!--<label for="firstName">First Name:</label>-->
-        <input type="text" id="firstName" name="firstName" placeholder="firstName" required>
-
-        <!--<label for="lastName">Last Name:</label>-->
-        <input type="text" id="lastName" name="lastName" placeholder="lastName" required>
-
-        <!--<label for="address">Address:</label>-->
-        <input type="text" id="address" name="address" placeholder="address" required>
-
-        <!--<label for="phoneNumber">Phone Number</label>-->
-        <input type="number" id="phoneNumber" name="phoneNumber" placeholder="phoneNumber" required>
-
-        <!--<label for="userName">Username</label>-->
-        <input type="text" id="userName" name="userName" placeholder="userName" required>
-
-        <!--<label for="password">Password</label>-->
-        <input type="password" id="password" name="password" placeholder="password" required>
-
-        <!--<label for="confirmPassword">Confirm Password</label>-->
-        <!--<input type="password" id="confirmPassword" name="confirmPassword" placeholder="confirmPassword" required>-->
-
+        <input type="text" id="firstName" name="firstName" placeholder="First Name" required>
+        <input type="text" id="lastName" name="lastName" placeholder="Last Name" required>
+        <input type="text" id="address" name="address" placeholder="Address" required>
+        <input type="number" id="phoneNumber" name="phoneNumber" placeholder="Phone Number" required>
+        <input type="text" id="userName" name="userName" placeholder="Username" required>
+        <input type="password" id="password" name="password" placeholder="Password" required>
         <button type="button" onclick="addUser()">Add in Table</button>
         <button type="button" id="submitButton" onclick="uploadDataInStock()">Upload Data</button>
-
     </form>
 
     <table id="User">
@@ -47,7 +28,10 @@
             </tr>
         </thead>
         <tbody>
-            <!-- Stock items will appear here -->
+            <!-- User data will appear here -->
         </tbody>
     </table>
 </div>
+
+
+
