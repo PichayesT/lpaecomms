@@ -1,3 +1,7 @@
+<%@ include file="header.jsp" %>
+
+
+
 <h1>Users Management System</h1>
 <!--Table1-->
 <div class="container">
