@@ -94,7 +94,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } catch (Exception $e) {
         // Rollback the transaction in case of an error
         $conn->rollback();
-        $_SESSION['error_message'] = "There was an error processing your order. Please try again.";
+        $_SESSION['error_message'] = 'An error occurred. Please try again later.';
+        error_log($e->getMessage());
         header("Location: cart.php");
         exit();
     }
