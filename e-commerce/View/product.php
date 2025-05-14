@@ -15,10 +15,15 @@
 
     // Simulate login process (you can replace this with real authentication logic)
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        // Assume successful login
-        $_SESSION['loggedIn'] = true;
-        $_SESSION['username'] = $user['lpa_user_username'];  // Assuming $user is the authenticated user data
-        $_SESSION['user_id'] = $user['lpa_user_id'];  // Assuming you set the user ID here during login
+        try {
+            // Assume successful login
+            $_SESSION['loggedIn'] = true;
+            $_SESSION['username'] = $user['lpa_user_username'];  // Assuming $user is the authenticated user data
+            $_SESSION['user_id'] = $user['lpa_user_id'];  // Assuming you set the user ID here during login
+        } catch (Exception $e) {
+            $_SESSION['error_message'] = 'An error occurred. Please try again later.';
+            error_log($e->getMessage());
+        }
     }
 ?>
 
