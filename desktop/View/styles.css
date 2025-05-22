@@ -493,7 +493,7 @@ footer {
     color: white;
     text-align: center;
     padding: 10px 0;
-    position: auto;
+    position: relative;
     width: 100%;
     bottom: 0;
     }
