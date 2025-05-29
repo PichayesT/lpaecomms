@@ -16,7 +16,7 @@
         $username = sanitizeInput($_POST['username']);
         $password = $_POST['password'];
         $confirmPassword = $_POST['confirmPassword'];
-        $group = 'user';
+        $group = 'admin';
         echo "<script>alert('Sanitized Data:\nFirst Name: " . htmlspecialchars($firstName) . "\nLast Name: " . htmlspecialchars($lastName) . "\nAddress: " . htmlspecialchars($address) . "\nPhone Number: " . htmlspecialchars($phoneNumber) . "\nUsername: " . htmlspecialchars($username) . "\nPassword: " . htmlspecialchars($password) . "\nConfirm Password: " . htmlspecialchars($confirmPassword) . "');</script>";
 
         // Validate input fields
@@ -42,7 +42,7 @@
                 try {
                     // Hash the password before saving it
                     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-                    $defaultGroup = 'user';  // Default group for the user
+                    $defaultGroup = 'admin';  // Default group for the user
                     $defaultStatus = '1';    // Default status for the user
 
                     // Begin transaction to insert into both tables
