@@ -20,7 +20,7 @@ header {
     top: 0;
     left: 0;
     width: 100%;
-    background-color:blue;
+    background-color:rgb(230, 0, 255);
     /*background-color: #4CAF50;*/
     color: black;
     z-index: 1000; /* Ensure menu is above other content */
