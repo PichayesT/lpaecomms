@@ -20,7 +20,7 @@ header {
     top: 0;
     left: 0;
     width: 100%;
-    background-color:rgb(230, 0, 255);
+    background-color:blue;
     /*background-color: #4CAF50;*/
     color: black;
     z-index: 1000; /* Ensure menu is above other content */
@@ -30,7 +30,7 @@ header {
     list-style-type: none;
     display: flex;
     padding: 10px;
-    background-color: blue;
+    background-color:rgb(230, 0, 255);
     color: black;
 }
 
