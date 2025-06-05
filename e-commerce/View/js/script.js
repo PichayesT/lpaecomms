@@ -149,7 +149,7 @@ window.onload = loadCart;
 
 
 //Mashup
-const apiUrl = 'http://localhost/Project/e-commerce/view/css/our-mission.json'; // Correct API URL
+const apiUrl = 'http://localhost/lpaecomms/e-commerce/view/css/our-mission.json'; // Correct API URL
 
 // Function to fetch mission data
 async function fetchMissionData() {
